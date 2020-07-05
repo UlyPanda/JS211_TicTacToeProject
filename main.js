@@ -30,11 +30,24 @@ const printBoard = () => {
   console.log('1 ' + board[1].join(' | '));
   console.log('  ---------');
   console.log('2 ' + board[2].join(' | '));
+  board[0][1]="x"
 }
 
 const horizontalWin = () => {
   // Your code here to check for horizontal wins
-}
+  if(board [0][0] === board [0][1] && board [0][0] === board [0][2]){
+    return true;
+  }
+  else if(board [1][0] === board [1][1] && board [1][0] === board [1][2]){
+    return true;
+  }
+  else if(board [2][0] === board [2][1] && board [2][0] === board [2][2]){
+    return true;
+
+  } else {
+    return false;
+  }
+  }
 
 const verticalWin = () => {
   // Your code here to check for vertical wins
