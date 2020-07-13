@@ -38,6 +38,10 @@ const addMarker = (id) => {
   
   // Arrange the above pieces into one a single line of code
   // to add an X or O to the board to the DOM so it can be scene on the screen.
+
+
+
+  
 }
 
 // passes the element's id attribute from HTML to be used
@@ -51,6 +55,7 @@ const updateBoard = (id) => {
 
   // @TODO, Your code here: use the above information to change the board variable(array of arrays)
   // HINT: in your browser open up the dev tools -> console
+  board[row][column] = currentMarker;
 }
 
 const checkForWin = () => {
@@ -66,15 +71,43 @@ const checkForWin = () => {
 
 const horizontalWin = () => {
   // @TODO, Your code here: to check for horizontal wins
+  if(board[0][0] === board[0][1] && board[0][1] === board[0][2] && board[0][0] !== '')  {
+    return true;
+  } else if(board[1][0] === board[1][1] && board[1][1] === board[1][2] && board[1][0] !== '') {
+    return true;
+  } else if(board[2][0] === board[2][1] && board[2][1] === board[2][2] && board[2][0] !== '') {
+    return true;
+  } else {
+    return false;
+  }
 }
+
 
 const verticalWin = () => {
   // @TODO, Your code here: to check for vertical wins
+  if(board[0][0] === board[1][0] && board[1][0] === board[2][0] && board[0][0] !== '') {
+    return true;
+  } else if(board[0][1] === board[1][1] && board[1][1] === board[2][1] && board[0][1] !== '') {
+    return true;
+  } else if(board[0][2] === board[1][2] && board[1][2] === board[2][2] && board[0][2] !== '') {
+    return true;
+  } else {
+    return false;
+  }
 }
+
 
 const diagonalWin = () => {
   // @TODO, Your code here: to check for diagonal wins
+  if(board[0][0] === board[1][1] && board[1][1] === board[2][2] && board[0][0] !== '') {
+    return true;
+  } else if(board[0][2] === board[1][1] && board[1][1] === board[2][0] && board[0][2] !== '') {
+    return true;
+  } else {
+    return false;
+  }
 }
+
 
 const changeMarker = () => {
   // ternary operator: if it's an X make it an O, if O make it an X
@@ -95,6 +128,11 @@ const resetBoard = () => {
   }
   
   // @TODO, Your code here: make sure to reset the array of arrays to empty for a new game
+  for(let i = 0; i < 3 i++) {
+    for(let y = 0; y < board[i].length; y++) {
+      board[i][y] = '';
+    }
+  }
 }
 
 // **BONUSES**
