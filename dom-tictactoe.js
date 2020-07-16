@@ -15,6 +15,9 @@ let board = [
   ['','','']
 ];
 
+let scoreX = 0;
+let scoreO = 0;
+
 // is called when a square is clicked. "this" = element here
 const handleClick = (element) => {
   // check to see if the square clicked has anything in it, if not continue
@@ -63,6 +66,14 @@ const checkForWin = () => {
   if(horizontalWin() || verticalWin() || diagonalWin()) {
     // **BONUS** you could make the dismissal of this alert window reset the board...
     window.alert(`Player ${currentMarker} won!`)
+    if(currentMarker === 'X'){
+      scoreX++;
+    } else {
+      scoreO++;
+    }
+    if(window.confirm(`Player ${currentMarker} won!`)); {
+      resetBoard();
+    }
   } else {
     // if no win, change the marker from X to O, or O to X for the next player.
     changeMarker()
@@ -85,12 +96,17 @@ const horizontalWin = () => {
 
 const verticalWin = () => {
   // @TODO, Your code here: to check for vertical wins
-  if(board[0][0] === board[1][0] && board[1][0] === board[2][0] && board[0][0] !== '') {
+  if(board[0][0] === board[1][0] && board[1][0] === board[2][0]) {
     return true;
-  } else if(board[0][1] === board[1][1] && board[1][1] === board[2][1] && board[0][1] !== '') {
-    return true;
-  } else if(board[0][2] === board[1][2] && board[1][2] === board[2][2] && board[0][2] !== '') {
-    return true;
+
+  } else if(board[0][1] === board[1][1] && board[1][1] === board[2][1]) {
+     if(board[0][1] === 'X' || board[0][1] === 'O') {
+      return true;
+     }
+  } else if(board[0][2] === board[1][2] && board[1][2] === board[2][2]) {
+     if(board[0][2] === 'X' || board[0][2] === 'O') {
+      return true;
+     }
   } else {
     return false;
   }
@@ -128,11 +144,13 @@ const resetBoard = () => {
   }
   
   // @TODO, Your code here: make sure to reset the array of arrays to empty for a new game
-  for(let i = 0; i < 3 i++) {
-    for(let y = 0; y < board[i].length; y++) {
-      board[i][y] = '';
-    }
-  }
+  board = [
+    ['','',''],
+    ['','',''],
+    ['','','']
+  ];
+
+  document.getElementById("score").innerHTML = `X has ${scoreX} wins and O has ${scoreO} wins.`;
 }
 
 // **BONUSES**

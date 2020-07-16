@@ -51,9 +51,8 @@ const horizontalWin = () => {
 const verticalWin = () => {
   // Your code here to check for vertical wins
   if(board[0][0] === board[1][0] && board[1][0] === board[2][0]) {
-     if(board[0][0] === 'X' || board[0][0] === 'O') {
     return true;
-     }
+
   } else if(board[0][1] === board[1][1] && board[1][1] === board[2][1]) {
      if(board[0][1] === 'X' || board[0][1] === 'O') {
       return true;
